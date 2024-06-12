@@ -22,8 +22,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetPatientsQuery } from '@/features/patient/patientApi';
 import { updateCacheKey } from '@/features/cacheKey/cacheKeySlice';
-import MangeRequest from './components/MangeRequest';
 import AddPatient from './components/AddPatient';
+import Delete from './components/Delete';
 
 const Patient = () => {
     const patientCacheKey = useSelector((state) => state.cacheKey.patient);
@@ -78,8 +78,8 @@ const Patient = () => {
                                 <TableCell>{patient.phone_number}</TableCell>
                                 <TableCell>{patient.medical_history}</TableCell>
                                 <TableCell className="text-right">
-                                    <MangeRequest id={patient.id} action="Approved" comment={patient.admin_comment} />
-                                    <MangeRequest id={patient.id} action="Rejected" />
+                                    <AddPatient id={patient.id} />
+                                    <Delete id={patient.id}/>
                                 </TableCell>
                             </TableRow>
                         ))}

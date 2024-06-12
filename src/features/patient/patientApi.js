@@ -13,12 +13,13 @@ export const patientsApi = apiSlice.injectEndpoints({
         }),
 
         addPatient: builder.mutation({
-            query: ({ newPatient }) => ({
+            query: ({ data }) => ({
                 url: '/api/v1/patient',
                 method: 'POST',
-                body: newPatient
+                body: data
             }),
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                console.log(arg)
                 // Pessimistic cache update
                 try {
                     const { data: newPatient } = await queryFulfilled;
@@ -92,7 +93,7 @@ export const patientsApi = apiSlice.injectEndpoints({
                 }
             },
         }),
-   }),
+    }),
 });
 
 export const {
